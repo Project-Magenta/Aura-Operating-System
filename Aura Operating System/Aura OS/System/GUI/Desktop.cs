@@ -50,6 +50,10 @@ namespace Aura_OS.System.GUI
 
             Graphics.DrawString("Hello from Aura Operating System!", 10, 50, Colors.White, Internals.Files.Fonts.Consolas14_cff);
 
+            Image img = Image.Load(Internals.Files.CosmosLogo.Normal);
+
+            Graphics.DrawImage(img, 10, 90);
+
             //Graphics.DrawLine(50, 50, 100, 70 + 50, Colors.Black);
 
             //Graphics.DrawRectangle(50, 50, 50, 50, Colors.Black);
