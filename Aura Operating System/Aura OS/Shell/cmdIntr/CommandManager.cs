@@ -176,7 +176,6 @@ namespace Aura_OS.Shell.cmdIntr
                 while (true)
                 {
                     ScreenManager.Step();
-                    
                 }
 
             }
