@@ -94,6 +94,7 @@
     <Folder Include="Apps\System\" />
     <Folder Include="Apps\User\" />
     <Folder Include="Core\" />
+    <Folder Include="Hardware\" />
     <Folder Include="Shell\" />
     <Folder Include="Shell\cmdIntr\" />
     <Folder Include="Shell\cmdIntr\c_Console\" />
@@ -108,6 +109,12 @@
     <Folder Include="System\" />
     <Folder Include="System\Computer\" />
     <Folder Include="System\Drawable\" />
+    <Folder Include="System\GUI\" />
+    <Folder Include="System\GUI\Drivers\" />
+    <Folder Include="System\GUI\Imaging\" />
+    <Folder Include="System\GUI\Imaging\Decoders\" />
+    <Folder Include="System\GUI\Internals\" />
+    <Folder Include="System\GUI\Internals\Files\" />
     <Folder Include="System\Security\" />
     <Folder Include="System\Translation\" />
     <Folder Include="System\Translation\Text\" />

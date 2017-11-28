@@ -171,11 +171,12 @@ namespace Aura_OS.Shell.cmdIntr
             }
             else if (cmd.Equals("startx"))
             {
-                ScreenManager.Step();
+                ScreenManager.Init();
 
                 while (true)
                 {
-                    ScreenManager.Init();
+                    ScreenManager.Step();
+                    
                 }
 
             }
