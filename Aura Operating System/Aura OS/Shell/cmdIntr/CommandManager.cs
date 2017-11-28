@@ -4,6 +4,9 @@
 * PROGRAMMER(S):    John Welsh <djlw78@gmail.com>
 */
 
+using Aura_OS.System.GUI;
+using System;
+
 namespace Aura_OS.Shell.cmdIntr
 {
     class CommandManager
@@ -166,10 +169,20 @@ namespace Aura_OS.Shell.cmdIntr
             {
                 Tests.Crash.c_Crash();
             }
+            else if (cmd.Equals("startx"))
+            {
+                ScreenManager.Step();
 
-        #endregion Tests
+                while (true)
+                {
+                    ScreenManager.Init();
+                }
 
-        #region Tools
+            }
+
+            #endregion Tests
+
+            #region Tools
 
             else if (cmd.Equals("snake"))
             {
