@@ -41,9 +41,9 @@ namespace Aura_OS.System.GUI
                 Console.Clear(); 
             }
 
-            Graphics.DrawString("FPS: " + FPS, 10, 10, Colors.White, Internals.Files.Fonts.Consolas14_cff);
+            Graphics.DrawString("FPS: " + FPS, 10, 10, Colors.White, Internals.Files.Fonts.SegoeUI11_cff);
 
-            Graphics.DrawString("Hello from Aura Operating System!", 10, 50, Colors.White, Internals.Files.Fonts.Consolas11_cff);
+            Graphics.DrawString("Hello from Aura Operating System!", 10, 50, Colors.White, Internals.Files.Fonts.SegoeUI11_cff);
 
             Image img = Image.Load(Internals.Files.CosmosLogo.Normal);
 

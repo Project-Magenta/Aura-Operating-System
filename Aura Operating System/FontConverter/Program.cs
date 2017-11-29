@@ -44,7 +44,7 @@ namespace FontConverter
 
             List<Thread> fontAcs = new List<Thread>();
 
-            Build(new Font("consolas", 11).FontFamily);
+            Build(new Font("segoe ui", 11).FontFamily);
 
             /*   foreach (FontFamily font in FontFamily.Families)
                {
