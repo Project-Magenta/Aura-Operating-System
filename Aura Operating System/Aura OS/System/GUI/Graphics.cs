@@ -29,7 +29,9 @@ namespace Aura_OS.System.GUI
             int numerator = longest >> 1;
             for (int i = 0; i <= longest; i++)
             {
-                Screen.SetPixel(x, y, color);
+
+                Shell.cmdIntr.CommandManager.Screens.SetPixel(x, y, color);
+
                 numerator += shortest;
                 if (!(numerator < longest))
                 {
@@ -88,7 +90,7 @@ namespace Aura_OS.System.GUI
                 {
                     if (f.Data[index][z] == 1)
                     {
-                        Screen.SetPixel(i, p, color);
+                        Shell.cmdIntr.CommandManager.Screens.SetPixel(i, p, color);
                     }
 
                     z++;
@@ -121,6 +123,8 @@ namespace Aura_OS.System.GUI
             }
         }
 
+        ScreenVBE vbe = new ScreenVBE();
+
         public static void DrawImage(Image img, int x, int y, Color TransparencyKey = null)
         {
             int z = 0;
@@ -132,12 +136,12 @@ namespace Aura_OS.System.GUI
                     {
                         if(img.Map[z] != TransparencyKey.ToHex())
                         {
-                            Screen.SetPixel(i, p, img.Map[z]);
+                            Shell.cmdIntr.CommandManager.Screens.SetPixel(i, p, img.Map[z]);
                         }
                     }
                     else
                     {
-                        Screen.SetPixel(i, p, img.Map[z]);
+                        Shell.cmdIntr.CommandManager.Screens.SetPixel(i, p, img.Map[z]);
                     }
 
                     z++;

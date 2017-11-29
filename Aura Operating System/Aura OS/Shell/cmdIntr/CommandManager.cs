@@ -5,7 +5,9 @@
 */
 
 using Aura_OS.System.GUI;
+using Cosmos.HAL;
 using System;
+using System.Collections.Generic;
 
 namespace Aura_OS.Shell.cmdIntr
 {
@@ -19,6 +21,9 @@ namespace Aura_OS.Shell.cmdIntr
         /// Empty constructor. (Good for debug)
         /// </summary>
         public CommandManager() { }
+
+        public static Screen Screens;
+
         /// <summary>
         /// Shell Interpreter
         /// </summary>
@@ -171,6 +176,18 @@ namespace Aura_OS.Shell.cmdIntr
             }
             else if (cmd.Equals("startx"))
             {
+
+                PCIDevice SVGAIIExists = PCI.GetDevice(0x15AD, 0x0405);
+
+                if (SVGAIIExists != null)
+                {
+                    ScreenSVGAII vbe = new ScreenSVGAII();
+                }
+                else
+                {
+                    ScreenVBE vbe = new ScreenVBE();
+                }
+
                 ScreenManager.Init();
 
                 while (true)

@@ -15,11 +15,14 @@ namespace Aura_OS.System.GUI
         public void Init()
         {
             //init screen and doublebuffer
-            Screen.Init();
+            Shell.cmdIntr.CommandManager.Screens.Init();
+
             //always init mouse agfter screen
             Cursor.Init();
             Cursor.Enabled = true;
-            Screen.Clear(BackGroundColor, true);
+
+            Shell.cmdIntr.CommandManager.Screens.Clear(BackGroundColor, true);
+
             deltaT = RTC.Second;
             Cursor.Image = Image.Load(Internals.Files.Cursors.Normal);
         }
@@ -31,7 +34,8 @@ namespace Aura_OS.System.GUI
         public void ReDraw()
         {
             //alwas clear first
-            Screen.Clear(BackGroundColor);
+            Shell.cmdIntr.CommandManager.Screens.Clear(BackGroundColor);
+
 
             if (deltaT != RTC.Second)
             {
@@ -57,7 +61,7 @@ namespace Aura_OS.System.GUI
             Cursor.Render();
 
             //always redraw last
-            Screen.Redraw();
+            Shell.cmdIntr.CommandManager.Screens.Redraw();
 
             Frames++;
         }

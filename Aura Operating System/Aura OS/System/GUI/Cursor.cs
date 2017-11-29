@@ -17,7 +17,7 @@ namespace Aura_OS.System.GUI
 
         public static void Init()
         {
-            Mouse.Initialize((uint)Screen.Vbe.ScreenWidth, (uint)Screen.Vbe.ScreenHeight);
+            Mouse.Initialize((uint)Shell.cmdIntr.CommandManager.Screens.ScreenWidth, (uint)Shell.cmdIntr.CommandManager.Screens.ScreenHeight);
         }
 
         public static void Render()

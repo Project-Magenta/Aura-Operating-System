@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Aura_OS.System.GUI
 {
-    public unsafe static class Screen //NEED CORE RING it's unsafe here
+    public unsafe class ScreenVBE : Screen //NEED CORE RING it's unsafe here
     {
 
         public static VBEScreen Vbe = new VBEScreen();
@@ -20,13 +20,18 @@ namespace Aura_OS.System.GUI
         public static List<int> Y_Changes = new List<int>();
         public static List<int> C_Changes = new List<int>();
 
-        public static void Init()
+        public override void Init()
         {
+
+            Name = "VBE Screen";
+
             //Vbe.SetMode(VBEScreen.ScreenSize.Size800x600, VBEScreen.Bpp.Bpp24);
             Vbe.SetMode(VBEScreen.ScreenSize.Size1024x768, VBEScreen.Bpp.Bpp24);
 
             BackBuffer = new byte[(Vbe.ScreenHeight * Vbe.ScreenWidth) * 3];
 
+            ScreenHeight = Vbe.ScreenHeight;
+            ScreenWidth = Vbe.ScreenWidth;
 
             for (int i = 0; i < BackBuffer.Length; i++)
             {
@@ -34,7 +39,7 @@ namespace Aura_OS.System.GUI
             }
         }
 
-        public static void Clear(int color, bool Frame = false)
+        public override void Clear(int color, bool Frame = false)
         {
 
             if (Frame)
@@ -78,15 +83,13 @@ namespace Aura_OS.System.GUI
 
         }
 
-        public static void SetPixel(int x, int y, int c)
+        public override void SetPixel(int x, int y, int c)
         {
             X_Changes.Add(x);
             Y_Changes.Add(y);
             C_Changes.Add(c);
 
         }
-
-
 
         private static uint GetIntFromRBG(byte red, byte green, byte blue)
         {
@@ -97,9 +100,7 @@ namespace Aura_OS.System.GUI
             return x;
         }
 
-
-
-        public static void Redraw()
+        public override void Redraw()
         {
 
 
