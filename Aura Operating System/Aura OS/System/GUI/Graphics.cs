@@ -123,8 +123,6 @@ namespace Aura_OS.System.GUI
             }
         }
 
-        ScreenVBE vbe = new ScreenVBE();
-
         public static void DrawImage(Image img, int x, int y, Color TransparencyKey = null)
         {
             int z = 0;
