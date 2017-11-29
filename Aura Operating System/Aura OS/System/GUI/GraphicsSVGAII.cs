@@ -1,5 +1,6 @@
 ﻿using Aura_OS.System.GUI.Imaging;
 using Cosmos.HAL.Drivers.PCI.Video;
+using Cosmos.System.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,9 @@ namespace Aura_OS.System.GUI
     {
 
         public VMWareSVGAII xSVGAIIDriver;
+
+        public static Pen pen;
+
 
         public override void DrawLine(int x, int y, int x2, int y2, Color color)
         {
@@ -95,9 +99,11 @@ namespace Aura_OS.System.GUI
                 {
                     if (f.Data[index][z] == 1)
                     {
-                        int colour = color;
-                        xSVGAIIDriver.SetPixel((uint)i, (uint)p, (uint)colour);
-                        xSVGAIIDriver.Update(0, 0, (uint)Screen.canvas.Mode.Columns, (uint)Screen.canvas.Mode.Rows);
+
+                        
+                        pen = new Pen(ColorstoColors.Convert(color));
+                        Screen.canvas.DrawPoint(pen, i, p);
+
                     }
 
                     z++;
@@ -112,6 +118,7 @@ namespace Aura_OS.System.GUI
             int totalwidth = 0;
             for (int i = 0; i < c.Length; i++)
             {
+                
 
                 var ch = c[i];
                 if (ch == ' ')
@@ -155,6 +162,30 @@ namespace Aura_OS.System.GUI
 
                     z++;
                 }
+            }
+        }
+    }
+
+    public static class ColorstoColors
+    {
+
+        public static Cosmos.System.Graphics.Color Convert(Color color)
+        {
+            if (color == Colors.Black)
+            {
+                return Cosmos.System.Graphics.Color.Black;
+            }
+            else if (color == Colors.White)
+            {
+                return Cosmos.System.Graphics.Color.White;
+            }
+            else if (color == Colors.Red)
+            {
+                return Cosmos.System.Graphics.Color.Red;
+            }
+            else
+            {
+                return null;
             }
         }
     }

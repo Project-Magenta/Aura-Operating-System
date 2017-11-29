@@ -2,6 +2,7 @@
 using Aura_OS.System.GUI;
 using Cosmos.HAL;
 using Cosmos.System.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,15 +21,17 @@ namespace Aura_OS.System.GUI
         public static List<int> Y_Changes = new List<int>();
         public static List<int> C_Changes = new List<int>();
 
-        public static Canvas canvas = FullScreenCanvas.GetFullScreenCanvas();
+        public static Canvas canvas;
+
         public static Pen pen = new Pen(Cosmos.System.Graphics.Color.Black);
 
         public static void Init()
         {
             if (Shell.cmdIntr.CommandManager.Graphic == "svgaii")
             {
-                
-                canvas.Mode = canvas.Mode = new Mode(1024, 768, ColorDepth.ColorDepth24);
+
+                canvas = FullScreenCanvas.GetFullScreenCanvas();
+                //new Mode(1024, 768, ColorDepth.ColorDepth32);
 
                 BackBuffer = new byte[(768 * 1024) * 3];
 
@@ -57,7 +60,9 @@ namespace Aura_OS.System.GUI
         {
             if (Shell.cmdIntr.CommandManager.Graphic == "svgaii")
             {
+
                 canvas.Clear(Cosmos.System.Graphics.Color.White);
+
             }
             else
             {

@@ -6,6 +6,7 @@
 
 using Aura_OS.System.GUI;
 using Cosmos.HAL;
+using Cosmos.System.Graphics;
 using System;
 using System.Collections.Generic;
 
@@ -24,6 +25,8 @@ namespace Aura_OS.Shell.cmdIntr
 
         public static string Graphic;
         public static Graphics driver;
+
+        public static Canvas canvas;
 
         /// <summary>
         /// Shell Interpreter
@@ -179,24 +182,30 @@ namespace Aura_OS.Shell.cmdIntr
             {
 
                 PCIDevice SVGAIIExists = PCI.GetDevice(0x15AD, 0x0405);
-
+                
                 if (SVGAIIExists != null)
                 {
                     GraphicsSVGAII svgaii = new GraphicsSVGAII();
                     Graphic = "svgaii";
+                
+                    //Console.WriteLine("svgaii 1");
+                    //Console.ReadKey();
                 }
                 else
-                {
-                    GraphicsVBE vbe = new GraphicsVBE();
+                 {
+                     GraphicsVBE vbe = new GraphicsVBE();
                     Graphic = "vbe";
-                }
+                 }
 
-                ScreenManager.Init();
+                 ScreenManager.Init();
 
-                while (true)
-                {
-                    ScreenManager.Step();
-                }
+                 //Console.WriteLine("svgaii 2");
+                 //Console.ReadKey();
+
+                 while (true)
+                 {
+                     ScreenManager.Step();
+                  }
 
             }
 
