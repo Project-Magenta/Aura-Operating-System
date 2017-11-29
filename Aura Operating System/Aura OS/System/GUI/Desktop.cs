@@ -33,22 +33,17 @@ namespace Aura_OS.System.GUI
             //alwas clear first
             Screen.Clear(BackGroundColor);
 
-           
-
-
             if (deltaT != RTC.Second)
             {
                 FPS = Frames;
                 Frames = 0;
                 deltaT = RTC.Second;
-                Console.Clear();
-                
-               
+                Console.Clear(); 
             }
 
             Graphics.DrawString("FPS: " + FPS, 10, 10, Colors.White, Internals.Files.Fonts.Consolas14_cff);
 
-            Graphics.DrawString("Hello from Aura Operating System!", 10, 50, Colors.White, Internals.Files.Fonts.Consolas14_cff);
+            Graphics.DrawString("Hello from Aura Operating System!", 10, 50, Colors.White, Internals.Files.Fonts.Consolas11_cff);
 
             Image img = Image.Load(Internals.Files.CosmosLogo.Normal);
 
@@ -57,7 +52,6 @@ namespace Aura_OS.System.GUI
             //Graphics.DrawLine(50, 50, 100, 70 + 50, Colors.Black);
 
             //Graphics.DrawRectangle(50, 50, 50, 50, Colors.Black);
-
 
             //mouse must alwasy be ontop
             Cursor.Render();

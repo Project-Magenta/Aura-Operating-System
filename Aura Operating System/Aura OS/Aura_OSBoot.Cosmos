@@ -84,6 +84,19 @@
     <IntelEdison_OutputPath>bin\Debug\net462\</IntelEdison_OutputPath>
     <IntelEdison_EnableGDB>False</IntelEdison_EnableGDB>
     <IntelEdison_StartCosmosGDB>false</IntelEdison_StartCosmosGDB>
+    <USB_StackCorruptionDetectionEnabled>True</USB_StackCorruptionDetectionEnabled>
+    <USB_Name>Aura_OSBoot</USB_Name>
+    <USB_Description>Makes a USB device such as a flash drive or external hard disk bootable.</USB_Description>
+    <USB_Deployment>USB</USB_Deployment>
+    <USB_Launch>None</USB_Launch>
+    <USB_DebugEnabled>False</USB_DebugEnabled>
+    <USB_DebugMode>Source</USB_DebugMode>
+    <USB_VisualStudioDebugPort>Pipe: Cosmos\Serial</USB_VisualStudioDebugPort>
+    <USB_PxeInterface>192.168.68.1</USB_PxeInterface>
+    <USB_VMwareEdition>Player</USB_VMwareEdition>
+    <USB_OutputPath>bin\Debug\net462\</USB_OutputPath>
+    <USB_EnableGDB>False</USB_EnableGDB>
+    <USB_StartCosmosGDB>false</USB_StartCosmosGDB>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="*" />
