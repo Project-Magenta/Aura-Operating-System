@@ -17,7 +17,15 @@ namespace Aura_OS.System.GUI
 
         public static void Init()
         {
-            Mouse.Initialize((uint)Shell.cmdIntr.CommandManager.Screens.ScreenWidth, (uint)Shell.cmdIntr.CommandManager.Screens.ScreenHeight);
+            if (Shell.cmdIntr.CommandManager.Graphic == "svgaii")
+            {
+                Mouse.Initialize((uint)Screen.Vbe.ScreenWidth, (uint)Screen.Vbe.ScreenHeight);
+            }
+            else
+            {
+                Mouse.Initialize((uint)1024, (uint)768);
+            }
+                
         }
 
         public static void Render()
@@ -26,7 +34,7 @@ namespace Aura_OS.System.GUI
             {
                 if(Enabled)
                 {
-                    Graphics.DrawImage(Image, Mouse.X, Mouse.Y, Colors.White);
+                    Shell.cmdIntr.CommandManager.driver.DrawImage(Image, Mouse.X, Mouse.Y, Colors.White);
                 }
             }
         }

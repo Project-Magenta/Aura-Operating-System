@@ -10,8 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="System\GUI\Drivers_2\ColorDepth.cs" />
-    <Compile Remove="System\GUI\Drivers_2\Mode.cs" />
+    <Compile Remove="System\GUI\Drivers\SVGAIIScreen.cs" />
   </ItemGroup>
 
   <ItemGroup>

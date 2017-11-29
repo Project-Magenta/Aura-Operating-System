@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Aura_OS.System.GUI
 {
-    public class Graphics
+    class GraphicsVBE : Graphics
     {
-        public static void DrawLine(int x, int y, int x2, int y2, Color color)
+        public override void DrawLine(int x, int y, int x2, int y2, Color color)
         {
             int w = x2 - x;
             int h = y2 - y;
@@ -29,9 +29,7 @@ namespace Aura_OS.System.GUI
             int numerator = longest >> 1;
             for (int i = 0; i <= longest; i++)
             {
-
-                Shell.cmdIntr.CommandManager.Screens.SetPixel(x, y, color);
-
+                Screen.SetPixel(x, y, color);
                 numerator += shortest;
                 if (!(numerator < longest))
                 {
@@ -47,7 +45,7 @@ namespace Aura_OS.System.GUI
             }
         }
 
-        public static void DrawRectangle(int x, int y, int w, int h, Color color)
+        public override void DrawRectangle(int x, int y, int w, int h, Color color)
         {
             DrawLine(x, y, x, y + h, color);
             DrawLine(x, y, x + w, y, color);
@@ -56,7 +54,7 @@ namespace Aura_OS.System.GUI
         }
         
 
-        public static void FillRectangle(int x, int y, int w, int h, Color color)
+        public override void FillRectangle(int x, int y, int w, int h, Color color)
         {
             DrawLine(x, y, x, y + h, color);
             DrawLine(x, y, x + w, y, color);
@@ -69,7 +67,7 @@ namespace Aura_OS.System.GUI
             }
         }
 
-        public static int DrawChar(char c, int x, int y, Color color, Font f)
+        public override int DrawChar(char c, int x, int y, Color color, Font f)
         {
             var index = 0;
             for (int i = 0; i < f.Char.Count; i++)
@@ -90,7 +88,7 @@ namespace Aura_OS.System.GUI
                 {
                     if (f.Data[index][z] == 1)
                     {
-                        Shell.cmdIntr.CommandManager.Screens.SetPixel(i, p, color);
+                        Screen.SetPixel(i, p, color);
                     }
 
                     z++;
@@ -100,7 +98,7 @@ namespace Aura_OS.System.GUI
             return width;
         }
 
-        public static void DrawString(string c, int x, int y, Color color, Font f)
+        public override void DrawString(string c, int x, int y, Color color, Font f)
         {
             int totalwidth = 0;
             for (int i = 0; i < c.Length; i++)
@@ -123,7 +121,7 @@ namespace Aura_OS.System.GUI
             }
         }
 
-        public static void DrawImage(Image img, int x, int y, Color TransparencyKey = null)
+        public override void DrawImage(Image img, int x, int y, Color TransparencyKey = null)
         {
             int z = 0;
             for (int p = y; p < y + img.Height; p++)
@@ -134,12 +132,12 @@ namespace Aura_OS.System.GUI
                     {
                         if(img.Map[z] != TransparencyKey.ToHex())
                         {
-                            Shell.cmdIntr.CommandManager.Screens.SetPixel(i, p, img.Map[z]);
+                            Screen.SetPixel(i, p, img.Map[z]);
                         }
                     }
                     else
                     {
-                        Shell.cmdIntr.CommandManager.Screens.SetPixel(i, p, img.Map[z]);
+                        Screen.SetPixel(i, p, img.Map[z]);
                     }
 
                     z++;

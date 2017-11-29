@@ -22,7 +22,8 @@ namespace Aura_OS.Shell.cmdIntr
         /// </summary>
         public CommandManager() { }
 
-        public static Screen Screens;
+        public static string Graphic;
+        public static Graphics driver;
 
         /// <summary>
         /// Shell Interpreter
@@ -181,11 +182,13 @@ namespace Aura_OS.Shell.cmdIntr
 
                 if (SVGAIIExists != null)
                 {
-                    ScreenSVGAII vbe = new ScreenSVGAII();
+                    GraphicsSVGAII svgaii = new GraphicsSVGAII();
+                    Graphic = "svgaii";
                 }
                 else
                 {
-                    ScreenVBE vbe = new ScreenVBE();
+                    GraphicsVBE vbe = new GraphicsVBE();
+                    Graphic = "vbe";
                 }
 
                 ScreenManager.Init();

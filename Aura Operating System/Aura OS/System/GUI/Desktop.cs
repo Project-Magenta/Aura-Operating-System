@@ -10,19 +10,16 @@ namespace Aura_OS.System.GUI
 {
     public class Desktop : IScreen
     {
-        public Color BackGroundColor = new Color(0x3498db);//hex 
+        public Color BackGroundColor = new Color(0xffffff);//hex 
 
         public void Init()
         {
             //init screen and doublebuffer
-            Shell.cmdIntr.CommandManager.Screens.Init();
-
+            Screen.Init();
             //always init mouse agfter screen
             Cursor.Init();
             Cursor.Enabled = true;
-
-            Shell.cmdIntr.CommandManager.Screens.Clear(BackGroundColor, true);
-
+            Screen.Clear(BackGroundColor, true);
             deltaT = RTC.Second;
             Cursor.Image = Image.Load(Internals.Files.Cursors.Normal);
         }
@@ -34,8 +31,7 @@ namespace Aura_OS.System.GUI
         public void ReDraw()
         {
             //alwas clear first
-            Shell.cmdIntr.CommandManager.Screens.Clear(BackGroundColor);
-
+            Screen.Clear(BackGroundColor);
 
             if (deltaT != RTC.Second)
             {
@@ -45,13 +41,13 @@ namespace Aura_OS.System.GUI
                 Console.Clear(); 
             }
 
-            Graphics.DrawString("FPS: " + FPS, 10, 10, Colors.White, Internals.Files.Fonts.SegoeUI11_cff);
+            Shell.cmdIntr.CommandManager.driver.DrawString("FPS: " + FPS, 10, 10, Colors.Black, Internals.Files.Fonts.Consolas14_cff);
 
-            Graphics.DrawString("Hello from Aura Operating System!", 10, 50, Colors.White, Internals.Files.Fonts.SegoeUI11_cff);
+            Shell.cmdIntr.CommandManager.driver.DrawString("Hello from Aura Operating System!", 10, 50, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
 
             Image img = Image.Load(Internals.Files.CosmosLogo.Normal);
 
-            Graphics.DrawImage(img, 10, 90);
+            Shell.cmdIntr.CommandManager.driver.DrawImage(img, 10, 90);
 
             //Graphics.DrawLine(50, 50, 100, 70 + 50, Colors.Black);
 
@@ -61,7 +57,7 @@ namespace Aura_OS.System.GUI
             Cursor.Render();
 
             //always redraw last
-            Shell.cmdIntr.CommandManager.Screens.Redraw();
+            Screen.Redraw();
 
             Frames++;
         }

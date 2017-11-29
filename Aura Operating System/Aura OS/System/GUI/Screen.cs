@@ -1,7 +1,7 @@
 ﻿
 using Aura_OS.System.GUI;
 using Cosmos.HAL;
-
+using Cosmos.System.Graphics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Aura_OS.System.GUI
 {
-    public unsafe class ScreenVBE : Screen //NEED CORE RING it's unsafe here
+    public unsafe static class Screen //NEED CORE RING it's unsafe here
     {
 
         public static VBEScreen Vbe = new VBEScreen();
@@ -20,76 +20,97 @@ namespace Aura_OS.System.GUI
         public static List<int> Y_Changes = new List<int>();
         public static List<int> C_Changes = new List<int>();
 
-        public override void Init()
+        public static Canvas canvas = FullScreenCanvas.GetFullScreenCanvas();
+        public static Pen pen = new Pen(Cosmos.System.Graphics.Color.Black);
+
+        public static void Init()
         {
-
-            Name = "VBE Screen";
-
-            //Vbe.SetMode(VBEScreen.ScreenSize.Size800x600, VBEScreen.Bpp.Bpp24);
-            Vbe.SetMode(VBEScreen.ScreenSize.Size1024x768, VBEScreen.Bpp.Bpp24);
-
-            BackBuffer = new byte[(Vbe.ScreenHeight * Vbe.ScreenWidth) * 3];
-
-            ScreenHeight = Vbe.ScreenHeight;
-            ScreenWidth = Vbe.ScreenWidth;
-
-            for (int i = 0; i < BackBuffer.Length; i++)
+            if (Shell.cmdIntr.CommandManager.Graphic == "svgaii")
             {
-                BackBuffer[0] = 0;
+                
+                canvas.Mode = canvas.Mode = new Mode(1024, 768, ColorDepth.ColorDepth24);
+
+                BackBuffer = new byte[(768 * 1024) * 3];
+
+
+                for (int i = 0; i < BackBuffer.Length; i++)
+                {
+                    BackBuffer[0] = 0;
+                }
+            }
+            else
+            {
+                //Vbe.SetMode(VBEScreen.ScreenSize.Size800x600, VBEScreen.Bpp.Bpp24);
+                Vbe.SetMode(VBEScreen.ScreenSize.Size1024x768, VBEScreen.Bpp.Bpp24);
+
+                BackBuffer = new byte[(Vbe.ScreenHeight * Vbe.ScreenWidth) * 3];
+
+
+                for (int i = 0; i < BackBuffer.Length; i++)
+                {
+                    BackBuffer[0] = 0;
+                }
             }
         }
 
-        public override void Clear(int color, bool Frame = false)
+        public static void Clear(int color, bool Frame = false)
         {
-
-            if (Frame)
+            if (Shell.cmdIntr.CommandManager.Graphic == "svgaii")
             {
-
-                Vbe.Clear((uint)color);
-                for (uint x = 0; x < Vbe.ScreenWidth; x++)
+                canvas.Clear(Cosmos.System.Graphics.Color.White);
+            }
+            else
+            {
+                if (Frame)
                 {
-                    for (uint y = 0; y < Vbe.ScreenHeight; y++)
+
+                    Vbe.Clear((uint)color);
+                    for (uint x = 0; x < Vbe.ScreenWidth; x++)
                     {
+                        for (uint y = 0; y < Vbe.ScreenHeight; y++)
+                        {
+                            var c = color;
+
+                            var where = x * ((uint)Vbe.ScreenBpp / 8) + y * (uint)(Vbe.ScreenWidth * ((uint)Vbe.ScreenBpp / 8));
+                            BackBuffer[where] = (byte)(c & 255);              // BLUE
+                            BackBuffer[where + 1] = (byte)((c >> 8) & 255);   // GREEN
+                            BackBuffer[where + 2] = (byte)((c >> 16) & 255);  // RED
+
+                        }
+                    }
+                    Redraw();
+
+                }
+                else
+                {
+                    for (int i = 0; i < X_Changes.Count; i++)
+                    {
+                        var x = X_Changes[i];
+                        var y = Y_Changes[i];
                         var c = color;
 
                         var where = x * ((uint)Vbe.ScreenBpp / 8) + y * (uint)(Vbe.ScreenWidth * ((uint)Vbe.ScreenBpp / 8));
                         BackBuffer[where] = (byte)(c & 255);              // BLUE
                         BackBuffer[where + 1] = (byte)((c >> 8) & 255);   // GREEN
                         BackBuffer[where + 2] = (byte)((c >> 16) & 255);  // RED
-
                     }
                 }
-                Redraw();
 
+                X_Changes.Clear();
+                Y_Changes.Clear();
+                C_Changes.Clear();
             }
-            else
-            {
-                for (int i = 0; i < X_Changes.Count; i++)
-                {
-                    var x = X_Changes[i];
-                    var y = Y_Changes[i];
-                    var c = color;
-
-                    var where = x * ((uint)Vbe.ScreenBpp / 8) + y * (uint)(Vbe.ScreenWidth * ((uint)Vbe.ScreenBpp / 8));
-                    BackBuffer[where] = (byte)(c & 255);              // BLUE
-                    BackBuffer[where + 1] = (byte)((c >> 8) & 255);   // GREEN
-                    BackBuffer[where + 2] = (byte)((c >> 16) & 255);  // RED
-                }
-            }
-
-            X_Changes.Clear();
-            Y_Changes.Clear();
-            C_Changes.Clear();
-
         }
 
-        public override void SetPixel(int x, int y, int c)
+        public static void SetPixel(int x, int y, int c)
         {
             X_Changes.Add(x);
             Y_Changes.Add(y);
             C_Changes.Add(c);
 
         }
+
+
 
         private static uint GetIntFromRBG(byte red, byte green, byte blue)
         {
@@ -100,26 +121,33 @@ namespace Aura_OS.System.GUI
             return x;
         }
 
-        public override void Redraw()
+
+
+        public static void Redraw()
         {
 
-
-            for (int i = 0; i < X_Changes.Count; i++)
+            if (Shell.cmdIntr.CommandManager.Graphic == "svgaii")
             {
-                var x = X_Changes[i];
-                var y = Y_Changes[i];
-                var c = C_Changes[i];
-
-                var where = x * ((uint)Vbe.ScreenBpp / 8) + y * (uint)(Vbe.ScreenWidth * ((uint)Vbe.ScreenBpp / 8));
-                BackBuffer[where] = (byte)(c & 255);              // BLUE
-                BackBuffer[where + 1] = (byte)((c >> 8) & 255);   // GREEN
-                BackBuffer[where + 2] = (byte)((c >> 16) & 255);  // RED
-
 
             }
+            else
+            {
+                for (int i = 0; i < X_Changes.Count; i++)
+                {
+                    var x = X_Changes[i];
+                    var y = Y_Changes[i];
+                    var c = C_Changes[i];
 
-            Vbe.SetBuffer(BackBuffer);
+                    var where = x * ((uint)Vbe.ScreenBpp / 8) + y * (uint)(Vbe.ScreenWidth * ((uint)Vbe.ScreenBpp / 8));
+                    BackBuffer[where] = (byte)(c & 255);              // BLUE
+                    BackBuffer[where + 1] = (byte)((c >> 8) & 255);   // GREEN
+                    BackBuffer[where + 2] = (byte)((c >> 16) & 255);  // RED
 
+
+                }
+
+                Vbe.SetBuffer(BackBuffer);
+            }
         }
 
     }
