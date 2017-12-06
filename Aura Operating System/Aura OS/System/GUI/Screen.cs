@@ -44,7 +44,7 @@ namespace Aura_OS.System.GUI
             else
             {
                 //Vbe.SetMode(VBEScreen.ScreenSize.Size800x600, VBEScreen.Bpp.Bpp24);
-                Vbe.SetMode(VBEScreen.ScreenSize.Size1024x768, VBEScreen.Bpp.Bpp24);
+                Vbe.SetMode(VBEScreen.ScreenSize.Size1280x1024, VBEScreen.Bpp.Bpp24);
 
                 BackBuffer = new byte[(Vbe.ScreenHeight * Vbe.ScreenWidth) * 3];
 
