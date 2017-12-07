@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="System\GUI\Drivers\SVGAIIScreen.cs" />
+    <Compile Remove="System\GUI\Framework\Drivers\SVGAIIScreen.cs" />
   </ItemGroup>
 
   <ItemGroup>

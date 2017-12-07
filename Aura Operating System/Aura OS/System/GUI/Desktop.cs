@@ -14,30 +14,12 @@ namespace Aura_OS.System.GUI
 
         public void Init()
         {
-            //init screen and doublebuffer
-            //Console.WriteLine("svgaii 01");
-            //Console.ReadKey();
-
             Screen.Init();
-
-            //Console.WriteLine("svgaii 02");
-            //Console.ReadKey();
-            //always init mouse agfter screen
             Cursor.Init();
-            //Console.WriteLine("svgaii 03");
-            //Console.ReadKey();
             Cursor.Enabled = true;
-            //Console.WriteLine("svgaii 04");
-            //Console.ReadKey();
             Screen.Clear(BackGroundColor, true);
-            //Console.WriteLine("svgaii 05");
-            //Console.ReadKey();
             deltaT = RTC.Second;
-            //Console.WriteLine("svgaii 06");
-            //Console.ReadKey();
             Cursor.Image = Image.Load(Internals.Files.Cursors.Normal);
-            //Console.WriteLine("svgaii 07");
-            //Console.ReadKey();
         }
 
         int c = 0;
@@ -57,24 +39,23 @@ namespace Aura_OS.System.GUI
                 Console.Clear(); 
             }
 
-            Shell.cmdIntr.CommandManager.driver.DrawString("FPS: " + FPS, 10, 10, Colors.Black, Internals.Files.Fonts.Consolas14_cff);
+            //Shell.cmdIntr.CommandManager.driver.DrawString("FPS: " + FPS, 10, 10, Colors.Black, Internals.Files.Fonts.Consolas14_cff);
 
-            Shell.cmdIntr.CommandManager.driver.DrawString("Hello from Aura Operating System!", 10, 50, Colors.Red, Internals.Files.Fonts.SegoeUI11_cff);
+            //Shell.cmdIntr.CommandManager.driver.DrawString("Hello from Aura Operating System!", 10, 50, Colors.Red, Internals.Files.Fonts.SegoeUI11_cff);
 
-            Image img = Image.Load(Internals.Files.CosmosLogo.Normal);
+            Image wallpaper = Image.Load(Files.Images.Wallpaper);
 
-            Shell.cmdIntr.CommandManager.driver.DrawImage(img, 10, 90);
+            Shell.cmdIntr.CommandManager.driver.DrawImage(wallpaper, 0, 0);
 
             //Graphics.DrawLine(50, 50, 100, 70 + 50, Colors.Black);
 
             //Graphics.DrawRectangle(50, 50, 50, 50, Colors.Black);
 
             //mouse must alwasy be ontop
+
+
             Cursor.Render();
-
-            //always redraw last
             Screen.Redraw();
-
             Frames++;
         }
 

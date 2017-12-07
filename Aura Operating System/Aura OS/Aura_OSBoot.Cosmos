@@ -124,6 +124,13 @@
     <Folder Include="System\Drawable\" />
     <Folder Include="System\GUI\" />
     <Folder Include="System\GUI\Drivers\" />
+    <Folder Include="System\GUI\Files\" />
+    <Folder Include="System\GUI\Framework\" />
+    <Folder Include="System\GUI\Framework\Drivers\" />
+    <Folder Include="System\GUI\Framework\Imaging\" />
+    <Folder Include="System\GUI\Framework\Imaging\Decoders\" />
+    <Folder Include="System\GUI\Framework\Internals\" />
+    <Folder Include="System\GUI\Framework\Internals\Files\" />
     <Folder Include="System\GUI\Imaging\" />
     <Folder Include="System\GUI\Imaging\Decoders\" />
     <Folder Include="System\GUI\Internals\" />
