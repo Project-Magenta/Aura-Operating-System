@@ -11,7 +11,7 @@ namespace Aura_OS.System.GUI
 {
     public class Desktop : IScreen
     {
-        public Color BackGroundColor = new Color(0xC0FFEE);//hex 
+        public Color BackGroundColor = new Color(0xFFFFFF);//hex 
 
         public void Init()
         {
@@ -70,7 +70,7 @@ namespace Aura_OS.System.GUI
             }
 
 
-            WindowsManager.AddWindow(50, 50, 100, 100, "Test Window");
+            WindowsManager.AddWindow(400, 300, 200, 200, "Test Window");
             WindowsManager.ShowWindows();
 
             //Graphics.FillRectangle(50, 50, 100, 100, Colors.Black);

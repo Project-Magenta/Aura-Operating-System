@@ -29,7 +29,13 @@ namespace Aura_OS.System.GUI
                     switch (Mouse.Buttons)
                     {
                         case Mouse.MouseState.Left:
-
+                            foreach (Window win in WindowsManager.Active_Windows)
+                            {
+                                if (ContainedInClose(win, Mouse.X, Mouse.Y))
+                                {
+                                    WindowsManager.Active_Windows.Remove(win);
+                                }
+                            }
                             break;
                         case Mouse.MouseState.Right:
 
@@ -46,6 +52,18 @@ namespace Aura_OS.System.GUI
                     }
                     Graphics.DrawImage(Image, Mouse.X, Mouse.Y, Colors.White);
                 }
+            }
+        }
+
+        public static bool ContainedInClose(Window window, int X, int Y)
+        {
+            if (X >= window.CloseArea.X && X <= window.CloseArea.XMAX && Y >= window.CloseArea.Y && Y <= window.CloseArea.YMAX)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

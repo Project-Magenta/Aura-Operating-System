@@ -43,9 +43,19 @@ namespace Aura_OS.System.GUI
 
         public Point size;
 
+        public Area CloseArea;
+
         public void Draw()
         {
-            Graphics.FillRectangle(pos.X, pos.Y, size.X, size.Y, Colors.Black);
+            Graphics.FillRectangle(pos.X, pos.Y - 20 , size.X, 20, Colors.AliceBlue);
+            Graphics.DrawString(Name, pos.X, pos.Y - 22, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
+            Graphics.FillRectangle(pos.X, pos.Y, size.X, size.Y, Colors.LightGray);
+            Graphics.DrawRectangle(pos.X - 1, pos.Y - 21, size.X + 2, size.Y + 22, Colors.DarkGray);
+            Graphics.FillRectangle(pos.X + size.X -19, pos.Y - 20, 19, 19, Colors.Red);
+            CloseArea.X = pos.X + size.X - 19;
+            CloseArea.Y = pos.Y - 20;
+            CloseArea.XH = 19;
+            CloseArea.YW = 19;
         }
 
     }
