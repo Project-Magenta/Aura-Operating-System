@@ -36,7 +36,7 @@ namespace Aura_OS.System.GUI
                                 if (ContainedInClose(win, Mouse.X, Mouse.Y))
                                 {
                                     //WindowsManager.Active_Windows.RemoveAt(counter);
-                                    Cosmos.System.Power.Shutdown();
+                                    Cosmos.System.Power.Reboot();
                                 }
                             }
                             break;
