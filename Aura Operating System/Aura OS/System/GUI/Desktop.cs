@@ -32,27 +32,11 @@ namespace Aura_OS.System.GUI
 
         //
 
+        
+
         public void ReDraw()
         {
             
-            switch (Mouse.Buttons)
-            {
-                case MouseState.Left:
-                    Graphics.DrawString("Left", 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
-                    break;
-                case MouseState.Right:
-                    Graphics.DrawString("Right", 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
-                    break;
-                case MouseState.Middle:
-                    Graphics.DrawString("Middle", 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
-                    break;
-                case MouseState.None:
-                    Graphics.DrawString("None", 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
-                    break;
-                default:
-                    Graphics.DrawString("Nothing detected..", 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
-                    break;
-            }
             //alwas clear first
             Screen.Clear(BackGroundColor);
 
@@ -64,6 +48,25 @@ namespace Aura_OS.System.GUI
                 Console.Clear();
                 
                
+            }
+
+            switch (Cursor.Mouse.Buttons)
+            {
+                case MouseState.Left:
+                    Graphics.DrawString("Left | " + Cursor.Mouse.X + " ; " + Cursor.Mouse.Y, 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
+                    break;
+                case MouseState.Right:
+                    Graphics.DrawString("Right | " + Cursor.Mouse.X + " ; " + Cursor.Mouse.Y, 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
+                    break;
+                case MouseState.Middle:
+                    Graphics.DrawString("Middle | " + Cursor.Mouse.X + " ; " + Cursor.Mouse.Y, 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
+                    break;
+                case MouseState.None:
+                    Graphics.DrawString("None", 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
+                    break;
+                default:
+                    Graphics.DrawString("Unknown event detected!", 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
+                    break;
             }
 
             Graphics.DrawString("FPS: " + FPS, 10, 50, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
