@@ -10,10 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="System\GUI\Framework\Drivers\SVGAIIScreen.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Aura_OSBoot.Cosmos" />
   </ItemGroup>
 

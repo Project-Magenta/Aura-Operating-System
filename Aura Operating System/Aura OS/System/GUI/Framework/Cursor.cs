@@ -26,6 +26,24 @@ namespace Aura_OS.System.GUI
             {
                 if (Enabled)
                 {
+                    switch (Mouse.Buttons)
+                    {
+                        case Mouse.MouseState.Left:
+
+                            break;
+                        case Mouse.MouseState.Right:
+
+                            break;
+                        case Mouse.MouseState.Middle:
+
+                            break;
+                        case Mouse.MouseState.None:
+
+                            break;
+                        default:
+
+                            break;
+                    }
                     Graphics.DrawImage(Image, Mouse.X, Mouse.Y, Colors.White);
                 }
             }

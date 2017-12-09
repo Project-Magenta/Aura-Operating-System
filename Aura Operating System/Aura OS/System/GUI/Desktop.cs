@@ -15,6 +15,7 @@ namespace Aura_OS.System.GUI
 
         public void Init()
         {
+            //WindowsManager.Desktop.Add(this);
             //init screen and doublebuffer
             Screen.Init();
             //always init mouse agfter screen
@@ -30,13 +31,10 @@ namespace Aura_OS.System.GUI
         int FPS = 0;
         int deltaT = 0;
 
-        //
-
-        
-
         public void ReDraw()
         {
-            
+
+            //Active_Windows.
             //alwas clear first
             Screen.Clear(BackGroundColor);
 
@@ -49,6 +47,8 @@ namespace Aura_OS.System.GUI
                 
                
             }
+
+
 
             switch (Cursor.Mouse.Buttons)
             {
@@ -69,12 +69,15 @@ namespace Aura_OS.System.GUI
                     break;
             }
 
-            Graphics.DrawString("FPS: " + FPS, 10, 50, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
 
-            //Graphics.DrawLine(50, 50, 100, 70 + 50, Colors.Black);
+            WindowsManager.AddWindow(50, 50, 100, 100, "Test Window");
+            WindowsManager.ShowWindows();
 
-            //Graphics.DrawRectangle(50, 50, 50, 50, Colors.Black);
+            //Graphics.FillRectangle(50, 50, 100, 100, Colors.Black);
 
+            Graphics.DrawString("FPS: " + FPS, 10, 40, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
+
+            //Graphics.DrawImage(Image.Load(Internals.Files.CosmosLogo.Normal), 10, 70);
 
             //mouse must alwasy be ontop
             Cursor.Render();
