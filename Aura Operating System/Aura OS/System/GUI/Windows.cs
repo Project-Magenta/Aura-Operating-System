@@ -54,8 +54,8 @@ namespace Aura_OS.System.GUI
             Graphics.FillRectangle(pos.X + size.X -19, pos.Y - 20, 19, 19, Colors.Red);
             CloseArea.X = pos.X + size.X - 19;
             CloseArea.Y = pos.Y - 20;
-            CloseArea.XH = 19;
-            CloseArea.YW = 19;
+            CloseArea.XMAX = CloseArea.X + 19;
+            CloseArea.YMAX = CloseArea.Y +  19;
         }
 
     }

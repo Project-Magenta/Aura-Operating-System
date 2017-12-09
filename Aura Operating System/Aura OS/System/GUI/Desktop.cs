@@ -70,7 +70,7 @@ namespace Aura_OS.System.GUI
             }
 
 
-            WindowsManager.AddWindow(400, 300, 200, 200, "Test Window");
+            WindowsManager.AddWindow(100, 100, 100, 100, "Test Window");
             WindowsManager.ShowWindows();
 
             //Graphics.FillRectangle(50, 50, 100, 100, Colors.Black);

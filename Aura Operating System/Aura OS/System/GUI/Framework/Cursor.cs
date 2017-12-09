@@ -29,11 +29,14 @@ namespace Aura_OS.System.GUI
                     switch (Mouse.Buttons)
                     {
                         case Mouse.MouseState.Left:
+                            int counter = -1;
                             foreach (Window win in WindowsManager.Active_Windows)
                             {
+                                counter++;
                                 if (ContainedInClose(win, Mouse.X, Mouse.Y))
                                 {
-                                    WindowsManager.Active_Windows.Remove(win);
+                                    //WindowsManager.Active_Windows.RemoveAt(counter);
+                                    Cosmos.System.Power.Shutdown();
                                 }
                             }
                             break;
