@@ -1,4 +1,5 @@
-﻿using Aura_OS.System.GUI.Imaging;
+﻿using Aura_OS.System.GUI;
+using Aura_OS.System.GUI.Imaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Aura_OS.System.GUI
 {
-    class GraphicsVBE : Graphics
+    public class Graphics
     {
-        public override void DrawLine(int x, int y, int x2, int y2, Color color)
+        public static void DrawLine(int x, int y, int x2, int y2, Color color)
         {
             int w = x2 - x;
             int h = y2 - y;
@@ -45,16 +46,16 @@ namespace Aura_OS.System.GUI
             }
         }
 
-        public override void DrawRectangle(int x, int y, int w, int h, Color color)
+        public static void DrawRectangle(int x, int y, int w, int h, Color color)
         {
             DrawLine(x, y, x, y + h, color);
             DrawLine(x, y, x + w, y, color);
             DrawLine(x, y + h, x + w, y + h, color);
             DrawLine(x + w, y, x + w, y + h, color);
         }
-        
 
-        public override void FillRectangle(int x, int y, int w, int h, Color color)
+
+        public static void FillRectangle(int x, int y, int w, int h, Color color)
         {
             DrawLine(x, y, x, y + h, color);
             DrawLine(x, y, x + w, y, color);
@@ -67,12 +68,12 @@ namespace Aura_OS.System.GUI
             }
         }
 
-        public override int DrawChar(char c, int x, int y, Color color, Font f)
+        public static int DrawChar(char c, int x, int y, Color color, Font f)
         {
             var index = 0;
             for (int i = 0; i < f.Char.Count; i++)
             {
-                if(c == f.Char[i])
+                if (c == f.Char[i])
                 {
                     index = i;
                     break;
@@ -98,12 +99,12 @@ namespace Aura_OS.System.GUI
             return width;
         }
 
-        public override void DrawString(string c, int x, int y, Color color, Font f)
+        public static void DrawString(string c, int x, int y, Color color, Font f)
         {
             int totalwidth = 0;
             for (int i = 0; i < c.Length; i++)
             {
-                
+
                 var ch = c[i];
                 if (ch == ' ')
                 {
@@ -121,7 +122,7 @@ namespace Aura_OS.System.GUI
             }
         }
 
-        public override void DrawImage(Image img, int x, int y, Color TransparencyKey = null)
+        public static void DrawImage(Image img, int x, int y, Color TransparencyKey = null)
         {
             int z = 0;
             for (int p = y; p < y + img.Height; p++)
@@ -130,7 +131,7 @@ namespace Aura_OS.System.GUI
                 {
                     if (TransparencyKey != null)
                     {
-                        if(img.Map[z] != TransparencyKey.ToHex())
+                        if (img.Map[z] != TransparencyKey.ToHex())
                         {
                             Screen.SetPixel(i, p, img.Map[z]);
                         }

@@ -17,24 +17,16 @@ namespace Aura_OS.System.GUI
 
         public static void Init()
         {
-            if (Shell.cmdIntr.CommandManager.Graphic == "svgaii")
-            {
-                Mouse.Initialize((uint)Screen.Vbe.ScreenWidth, (uint)Screen.Vbe.ScreenHeight);
-            }
-            else
-            {
-                Mouse.Initialize((uint)1024, (uint)768);
-            }
-                
+            Mouse.Initialize((uint)Screen.Vbe.ScreenWidth, (uint)Screen.Vbe.ScreenHeight);
         }
 
         public static void Render()
         {
-            if(Image != null)
+            if (Image != null)
             {
-                if(Enabled)
+                if (Enabled)
                 {
-                    Shell.cmdIntr.CommandManager.driver.DrawImage(Image, Mouse.X, Mouse.Y, Colors.White);
+                    Graphics.DrawImage(Image, Mouse.X, Mouse.Y, Colors.White);
                 }
             }
         }

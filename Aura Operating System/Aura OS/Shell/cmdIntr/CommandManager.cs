@@ -181,22 +181,6 @@ namespace Aura_OS.Shell.cmdIntr
             else if (cmd.Equals("startx"))
             {
 
-                PCIDevice SVGAIIExists = PCI.GetDevice(0x15AD, 0x0405);
-                
-                if (SVGAIIExists != null)
-                {
-                    GraphicsSVGAII svgaii = new GraphicsSVGAII();
-                    Graphic = "svgaii";
-                
-                    //Console.WriteLine("svgaii 1");
-                    //Console.ReadKey();
-                }
-                else
-                 {
-                     GraphicsVBE vbe = new GraphicsVBE();
-                    Graphic = "vbe";
-                 }
-
                  ScreenManager.Init();
 
                  //Console.WriteLine("svgaii 2");
