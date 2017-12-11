@@ -57,6 +57,8 @@ namespace Aura_OS.System.GUI
                     break;
                 case MouseState.Right:
                     Graphics.DrawString("Right | " + Cursor.Mouse.X + " ; " + Cursor.Mouse.Y, 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
+                    //WindowsManager.AddWindow(100, 100, 100, 100, "Test Window");
+                    //WindowsManager.ShowWindows();
                     break;
                 case MouseState.Middle:
                     Graphics.DrawString("Middle | " + Cursor.Mouse.X + " ; " + Cursor.Mouse.Y, 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
@@ -70,12 +72,12 @@ namespace Aura_OS.System.GUI
             }
 
 
-            WindowsManager.AddWindow(100, 100, 100, 100, "Test Window");
-            WindowsManager.ShowWindows();
+            
 
             //Graphics.FillRectangle(50, 50, 100, 100, Colors.Black);
 
             Graphics.DrawString("FPS: " + FPS, 10, 40, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
+            Graphics.FillRectangle();
 
             //Graphics.DrawImage(Image.Load(Internals.Files.CosmosLogo.Normal), 10, 70);
 
