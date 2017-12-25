@@ -18,4 +18,13 @@
     <PackageReference Include="Cosmos.System2" Version="1.0.0-*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="XSharp">
+      <HintPath>..\..\..\..\Cosmos\XSharp\source\XSharp\bin\Debug\netstandard2.0\XSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="XSharp.Assembler">
+      <HintPath>..\..\..\..\Cosmos\XSharp\source\XSharp\bin\Debug\netstandard2.0\XSharp.Assembler.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

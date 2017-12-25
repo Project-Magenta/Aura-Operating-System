@@ -26,33 +26,6 @@ namespace Aura_OS.System.GUI
             {
                 if (Enabled)
                 {
-                    switch (Mouse.Buttons)
-                    {
-                        case Mouse.MouseState.Left:
-                            int counter = -1;
-                            foreach (Window win in WindowsManager.Active_Windows)
-                            {
-                                counter++;
-                                if (ContainedInClose(win, Mouse.X, Mouse.Y))
-                                {
-                                    //WindowsManager.Active_Windows.RemoveAt(counter);
-                                    Cosmos.System.Power.Reboot();
-                                }
-                            }
-                            break;
-                        case Mouse.MouseState.Right:
-
-                            break;
-                        case Mouse.MouseState.Middle:
-
-                            break;
-                        case Mouse.MouseState.None:
-
-                            break;
-                        default:
-
-                            break;
-                    }
                     Graphics.DrawImage(Image, Mouse.X, Mouse.Y, Colors.White);
                 }
             }

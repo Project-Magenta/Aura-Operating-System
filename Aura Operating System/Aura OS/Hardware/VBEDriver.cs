@@ -4,19 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aura_OS.Hardware
+namespace CosmosGL.Hal
 {
-    public class VBEDriver
+    public class VbeDriver
     {
 
-        //public Cosmos.Core.IOGroup.VGA IO = Cosmos.Core.Global.BaseIOGroups.VBE;
-        private Cosmos.Core.IOGroup.VBE IO = Cosmos.Core.Global.BaseIOGroups.VBE;
+        public Cosmos.Core.IOGroup.VBE Io = Cosmos.Core.Global.BaseIOGroups.VBE;
 
         private void vbe_write(ushort index, ushort value)
         {
-            IO.VbeIndex.Word = (ushort)index;
-            IO.VbeData.Word = value;
+            Io.VbeIndex.Word = index;
+            Io.VbeData.Word = value;
         }
+
+
 
         public void vbe_set(ushort xres, ushort yres, ushort bpp)
         {
@@ -41,18 +42,18 @@ namespace Aura_OS.Hardware
         {
             for (uint i = 0; i < value.Length; i++)
             {
-                IO.LinearFrameBuffer.DWords[i] = value[i];
+                Io.LinearFrameBuffer[i] = value[i];
             }
         }
 
         public void set_vram(uint index, byte value)
         {
-            IO.LinearFrameBuffer.Bytes[index] = value;
+            Io.LinearFrameBuffer[index] = value;
         }
 
         public byte get_vram(uint index)
         {
-            return IO.LinearFrameBuffer.Bytes[index];
+            return (byte)Io.LinearFrameBuffer[index];
         }
 
     }

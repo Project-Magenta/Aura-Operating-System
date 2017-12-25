@@ -1,16 +1,13 @@
 ﻿using Aura_OS.System.GUI.Imaging;
 using Cosmos.HAL;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static Cosmos.HAL.Mouse;
 
 namespace Aura_OS.System.GUI
 {
     public class Desktop : IScreen
     {
+
         public Color BackGroundColor = new Color(0xFFFFFF);//hex 
 
         public void Init()
@@ -38,46 +35,42 @@ namespace Aura_OS.System.GUI
             //alwas clear first
             Screen.Clear(BackGroundColor);
 
-            if (deltaT != RTC.Second)
-            {
-                FPS = Frames;
-                Frames = 0;
-                deltaT = RTC.Second;
-                Console.Clear();
-                
-               
-            }
+            //if (deltaT != RTC.Second)
+            //{
+            //    FPS = Frames;
+            //    Frames = 0;
+            //    deltaT = RTC.Second;
+            //    Console.Clear();
+            //    
+            //   
+            //}
 
 
 
-            switch (Cursor.Mouse.Buttons)
-            {
-                case MouseState.Left:
-                    Graphics.DrawString("Left | " + Cursor.Mouse.X + " ; " + Cursor.Mouse.Y, 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
-                    break;
-                case MouseState.Right:
-                    Graphics.DrawString("Right | " + Cursor.Mouse.X + " ; " + Cursor.Mouse.Y, 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
+            //switch (Cursor.Mouse.Buttons)
+            //{
+            //    case MouseState.Left:
+                    //Graphics.DrawString("Left | " + Cursor.Mouse.X + " ; " + Cursor.Mouse.Y, 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
+            //        break;
+               // case MouseState.Right:
+                    //Graphics.DrawString("Right | " + Cursor.Mouse.X + " ; " + Cursor.Mouse.Y, 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
                     //WindowsManager.AddWindow(100, 100, 100, 100, "Test Window");
                     //WindowsManager.ShowWindows();
-                    break;
-                case MouseState.Middle:
-                    Graphics.DrawString("Middle | " + Cursor.Mouse.X + " ; " + Cursor.Mouse.Y, 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
-                    break;
-                case MouseState.None:
-                    Graphics.DrawString("None", 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
-                    break;
-                default:
-                    Graphics.DrawString("Unknown event detected!", 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
-                    break;
-            }
-
-
-            
+                 //   break;
+              //  case MouseState.Middle:
+                    //Graphics.DrawString("Middle | " + Cursor.Mouse.X + " ; " + Cursor.Mouse.Y, 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
+               //     break;
+              //  case MouseState.None:
+                    //Graphics.DrawString("None", 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
+               //     break;
+             //   default:
+                    //Graphics.DrawString("Unknown event detected!", 10, 10, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
+                  //  break;
+         //   }
 
             //Graphics.FillRectangle(50, 50, 100, 100, Colors.Black);
 
-            Graphics.DrawString("FPS: " + FPS, 10, 40, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
-            Graphics.FillRectangle();
+            //Graphics.DrawString("FPS: " + FPS, 10, 40, Colors.Black, Internals.Files.Fonts.SegoeUI11_cff);
 
             //Graphics.DrawImage(Image.Load(Internals.Files.CosmosLogo.Normal), 10, 70);
 
