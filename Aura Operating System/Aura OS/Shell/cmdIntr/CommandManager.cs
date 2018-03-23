@@ -4,6 +4,8 @@
 * PROGRAMMER(S):    John Welsh <djlw78@gmail.com>
 */
 
+using System;
+
 namespace Aura_OS.Shell.cmdIntr
 {
     class CommandManager
@@ -174,6 +176,12 @@ namespace Aura_OS.Shell.cmdIntr
                 int result = 1 / value; //Division by 0
             }
 
+            //else if (cmd.StartsWith("xml "))
+            //{
+            //    Util.xml.CmdXmlParser.c_CmdXmlParser(cmd, 0, 4);
+            //}
+
+
             #endregion Tests
 
             #region Tools
@@ -190,6 +198,11 @@ namespace Aura_OS.Shell.cmdIntr
             #endregion
 
             #region Util           
+
+            else if (cmd.StartsWith("export"))
+            {
+                Util.EnvVar.c_Export(cmd);
+            }
 
             else
             {

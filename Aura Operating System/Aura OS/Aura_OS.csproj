@@ -1,9 +1,11 @@
-﻿<Project Sdk="Microsoft.Net.Sdk">
+<Project Sdk="Microsoft.Net.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <StackCorruptionDetectionLevel>MethodFooters</StackCorruptionDetectionLevel>
+    <IgnoreDebugStubAttribute>False</IgnoreDebugStubAttribute>
   </PropertyGroup>
   <PropertyGroup>
-    <BinFormat>elf</BinFormat>
+    <BinFormat>Bin</BinFormat>
     <Profile>VMware</Profile>
     <DebugEnabled>True</DebugEnabled>
     <DebugMode>Source</DebugMode>
@@ -11,7 +13,7 @@
     <EnableGDB>False</EnableGDB>
     <StartCosmosGDB>false</StartCosmosGDB>
     <VMWareEdition>Player</VMWareEdition>
-    <OutputPath>bin\Debug\net462\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <Description>Use VMware Player or Workstation to deploy and debug.</Description>
     <Deployment>ISO</Deployment>
     <Launch>VMware</Launch>
