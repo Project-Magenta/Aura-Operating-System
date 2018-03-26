@@ -25,6 +25,8 @@ namespace Aura_OS.System
         private string FinalLang;
         private string FinalHostname;
 
+        private bool noinstallnofs = false;
+
         /// <summary>
         /// Verify filesystem
         /// </summary>
@@ -57,7 +59,7 @@ namespace Aura_OS.System
         {           
             if(FileSystem() == "false")
             {
-                RunWithoutFS();
+                RunWithoutFS(false);
             }
             else if(FileSystem() == "true"){
                 Kernel.SystemExists = true;
@@ -65,9 +67,12 @@ namespace Aura_OS.System
             else if(FileSystem() == "continue")
             {
                 RegisterLanguage();
-                RegisterHostname();
                 RegisterUser();
-                Installation();
+                if (!noinstallnofs)
+                {
+                    RegisterHostname();
+                    Installation();
+                }
             }           
         }
 
@@ -102,36 +107,44 @@ namespace Aura_OS.System
             username = text.Remove(middle, text.Length - middle);
             password = text.Remove(0, middle + 6);
 
-            string tryusername = "";
-
-            if (tryusername.StartsWith("user:" + username))
+            if (username == "root" || password == "root")
             {
-                Text.Menu("alreadyuser");
-                RegisterUser();
+                noinstallnofs = true;
+                RunWithoutFS(true);
             }
             else
             {
-                if ((username.Length >= 4) && (username.Length <= 20))
+                string tryusername = "";
+
+                if (tryusername.StartsWith("user:" + username))
                 {
-                    if ((password.Length >= 6) && (password.Length <= 40))
-                    {
-                        //good
-                        password = MD5.hash(password);
-                        FinalUsername = username;
-                        FinalPassword = password;
-                    }
-                    else
-                    {
-                        Text.Menu("error2");
-                        RegisterUser();
-                    }
+                    Text.Menu("alreadyuser");
+                    RegisterUser();
                 }
                 else
                 {
-                    Text.Menu("error3");
-                    RegisterUser();
+                    if ((username.Length >= 4) && (username.Length <= 20))
+                    {
+                        if ((password.Length >= 6) && (password.Length <= 40))
+                        {
+                            //good
+                            password = MD5.hash(password);
+                            FinalUsername = username;
+                            FinalPassword = password;
+                        }
+                        else
+                        {
+                            Text.Menu("error2");
+                            RegisterUser();
+                        }
+                    }
+                    else
+                    {
+                        Text.Menu("error3");
+                        RegisterUser();
+                    }
                 }
-            }            
+            }
         }
 
         /// <summary>
@@ -207,16 +220,19 @@ namespace Aura_OS.System
             }
             catch
             {
-                RunWithoutFS();
+                RunWithoutFS(false);
             }            
         }
 
         /// <summary>
         /// Method called to start Aura_OS without using filesystem and loggged to "root"
         /// </summary>
-        public void RunWithoutFS() //logged with root without using filesystem
+        public void RunWithoutFS(bool nofsroot) //logged with root without using filesystem
         {
-            RegisterLanguage();
+            if (!nofsroot)
+            {
+                RegisterLanguage();
+            }
             Kernel.SystemExists = false;
             Kernel.userLogged = "root";
             Kernel.Logged = true;
